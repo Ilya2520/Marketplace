@@ -1,0 +1,32 @@
+пароль root
+
+
+create table client(id_client int auto_increment primary key, first_name varchar(255) not null, second_name varchar(255) not null, last_name varchar(255), email varchar(255), locate varchar(255) not null, birthday date not null);
+
+create table order1(id_order int auto_increment primary key, payment boolean not null,order_price int, order_info varchar(255), order_date date);
+
+alter table order1 add id_client int;
+
+alter table order1 add foreign key(id_client) references client(id_client);
+
+create table order_struct(id_order_struct int auto_increment primary key, id_order int, quantity int , id_good int);
+
+alter table order_struct add foreign key(id_order) references order1(id_order);
+
+create table goods(id_good int auto_increment primary key, good_price int, short_info varchar(255), good_name varchar(255) not null);
+
+alter table order_struct add foreign key(id_good) references goods(id_good);
+
+create table delivery(id_delivery int auto_increment primary key, id_storage int, delivery_date date, delivery_time varchar(255),  id_order int, id_delivery_stat int);
+
+alter table delivery add foreign key(id_order) references order1(id_order);
+
+create table storage(id_storage int auto_increment primary key, locate varchar(255), worktime varchar(255));
+
+alter table delivery add foreign key(id_storage) references storage(id_storage);
+
+create table delivery_stat(id_delivery_stat int auto_increment primary key);
+
+alter table delivery add foreign key(id_delivery_stat) references delivery_stat(id_delivery_stat);
+
+alter table delivery_stat add delivery_stat boolean;
