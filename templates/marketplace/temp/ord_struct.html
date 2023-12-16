@@ -1,0 +1,34 @@
+{% extends 'marketplace/temp/base.html' %}
+
+{% block content %}
+    <h1><b>Заказ №</b>{{ order_id }}</h1>
+<ul>
+         {% for p in posts %}
+         <li>
+{#         <h2><b>Товар </b>{{ p.order_struct.id_good.good_name }}</h2>#}
+{#            <p><b>Инфо </b> {{ p.order_struct.id_good.short_info }}</p>#}
+{#            <p><b>Количество: </b> {{ p.order_struct.count_of_prod }}</p>#}
+{#            <p><b>Цена: </b>{{ p.order_struct.count_of_prod }}*{{ p.order_struct.id_good.good_price }}</p>#}
+{#            <hr>#}
+         </li>
+         {% endfor %}
+    <button type="button"  class="btn" id="showGoodsBtn">Добавить</button>
+
+</ul>
+{#<form action="{%  url 'ord_struct' order_id=order_id %}" method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form }}#}
+{#    <input type="submit" value="Submit">#}
+{#</form>#}
+{#<div class="goods" id="goodsList" style="display: none;">#}
+{#    {% for p in goods %}#}
+{#       <div class="goodsLi">#}
+{#          <h2><b>Товар1 №</b>{{ p.id_good }}</h2>#}
+{#            <p><b>Наименование: </b> {{ p.good_name }}</p>#}
+{#            <p><b>Описание: </b>{{ p.short_info }}</p>#}
+{#            <p><b>Цена: </b>{{ p.good_price }}</p>#}
+{#            <hr>#}
+{#         </div>#}
+{#    {% endfor %}#}
+{#</div>#}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'marketplace/temp/base.html' %}
+
+{% block content %}
+
+<ul>
+    <h1>{{ title }}</h1>
+
+    <form method="get" class="search-form" action="{% url 'storage_search' %}">
+    <input type="text" name="search" placeholder="Поиск">
+    <button type="submit">Найти</button>
+</form>
+    {% for p in page_obj %}
+        <li>
+            <h2><b>Склад №</b>{{ p.id_storage }}</h2>
+            <p> <b>Город: </b> {{ p.locate }}</p>
+            <p> <b>Рабочее время: </b> {{ p.worktime }}</p>
+            <hr>
+        </li>
+    {% endfor %}
+</ul>
+    <form action="{%  url 'storages' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+    <nav class="abx" style="display: flex">
+    <ul class="aaa" style="display: inline-block">
+        {% for p in page_obj.paginator.page_range %}
+        <li style="display: inline-block">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock %}

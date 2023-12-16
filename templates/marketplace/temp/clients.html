@@ -1,0 +1,23 @@
+{% extends 'marketplace/temp/base.html' %}
+
+{% block content %}
+
+<h1>{{title}}</h1>
+<ul>
+         {% for p in posts %}
+         <li>
+                   <h2>
+                       {{ p.second_name }}{% if p.last_name %} {% endif %}
+                       {{ p.first_name }}{% if p.first_name %} {% endif %}
+                       {{ p.last_name }}{% if p.last_name %} {% endif %}
+                       {{ p.patronymic }}
+                   </h2>
+                   <p>{{p.email}}</p>
+                   <p>{{p.locate}}</p>
+                   <p>{{p.birthday}}</p>
+                   <hr>
+         </li>
+         {% endfor %}
+</ul>
+
+{% endblock %}

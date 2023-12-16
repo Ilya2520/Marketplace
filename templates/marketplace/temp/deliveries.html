@@ -1,0 +1,25 @@
+{% extends 'marketplace/temp/base.html' %}
+{% block content %}
+<h1>{{title}}</h1>
+<ul>
+         {% for p in page_obj %}
+         <li>
+             <h2>Доставка №{{p.id_delivery}}</h2>
+             <p><b>Дата доставки: </b>{{p.email}}</p>
+             <p><b>Город: </b>{{p.id_storage.locate}}</p>
+             <p><b>Время ожидания: </b>{{p.delivery_time}}</p>
+
+             <hr>
+         </li>
+         {% endfor %}
+</ul>
+        <nav class="abx" style="display: flex">
+    <ul class="aaa" style="display: inline-block">
+        {% for p in page_obj.paginator.page_range %}
+        <li style="display: inline-block">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'marketplace/temp/base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'marketplace/css/product.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    <form method="get" class="search-form" action="{% url 'search' %}">
+    <input type="text" name="search" placeholder="Поиск">
+    <button type="submit">Найти</button>
+</form>
+ <div class="product-grid">
+        {% for p in page_obj %}
+            <div class="product-item">
+                <h2><b>Товар №</b>{{ p.id_good }}</h2>
+                <p><b>Наименование: </b> {{ p.good_name }}</p>
+                <p><b>Описание: </b>{{ p.short_info }}</p>
+                <p><b>Цена: </b>{{ p.good_price }}</p>
+                <hr>
+            </div>
+        {% endfor %}
+ </div>
+    <button type="button"  class="btn" id="showGoodsBtn">Добавить</button>
+    <form action="{%  url 'goods' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+        <nav class="abx" style="display: flex">
+    <ul class="aaa" style="display: inline-block">
+        {% for p in page_obj.paginator.page_range %}
+        <li style="display: inline-block">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock %}

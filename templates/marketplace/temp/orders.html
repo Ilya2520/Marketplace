@@ -1,0 +1,34 @@
+{% extends 'marketplace/temp/base.html' %}
+
+
+{% block content %}
+    <h1>{{title}}</h1>
+<ul>
+         {% for p in page_obj %}
+         <li>
+         <h2><b>Заказ №</b>{{ p.id_order }}</h2>
+             <h2>
+                 {{ p.id_client.second_name }}{% if p.id_client.last_name %} {% endif %}
+                 {{ p.id_client.first_name }}{% if p.id_client.first_name %} {% endif %}
+                 {{ p.id_client.last_name }}{% if p.id_client.last_name %} {% endif %}
+                 {{ p.patronymic }}
+             </h2>
+            <p><b>Статус оплаты: </b> {{ p.payment }}</p>
+            <p><b>Цена: </b> {{ p.order_price }}</p>
+            <p><b>Информация о заказе: </b>{{ p.order_info }}</p>
+            <p><b>Дата заказа: </b>{{ p.order_date }}</p>
+            <hr>
+             <button type="button" order-id="{{ p.id_order }}" class="btnСhangeOrd" >Изменить</button>
+         </li>
+         {% endfor %}
+</ul>
+    <nav class="abx" style="display: flex">
+    <ul class="aaa" style="display: inline-block">
+        {% for p in page_obj.paginator.page_range %}
+        <li style="display: inline-block">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock %}
